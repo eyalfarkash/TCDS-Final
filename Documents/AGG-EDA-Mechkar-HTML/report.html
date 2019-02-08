@@ -1,0 +1,225 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Data Visualization</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+        <link rel='stylesheet' href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+        <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+        <script src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
+        <script>
+        $(document).ready(function(){
+           $('.onetoone').hide();
+        });
+        $(function() {
+           $('.origimg').click(function(e) {
+             $('#popup_img').attr('src',$(this).attr('src'));
+             $('#myContainer').hide();
+             var pos = $(document).scrollTop();
+             $('#myContainer').css({'top':pos+20,'left':250, 'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+             $('#myContainer').show();
+            });
+           $('#myContainer').click(function(e) {
+             $('#myContainer').hide();
+           });
+           $('#myform2').submit(function(e) {
+             e.preventDefault();
+           });
+           $('#onetoone').on('click',function() {
+           console.log('onetone button - 1');
+           $('#onetoone').hide();
+           $('#aslist').show();
+           // To show only individual rows:
+           $('.Row').hide();
+           $('.onetoone').show();
+           // then we iterate
+           var i = $('.Row').length;
+           // Then we iterate
+           var nxt = $('#idx').val();
+           if (nxt < i & nxt >0) {
+             $('.Row').hide();
+             $('.Row').eq(0).show();
+             $('.Row').eq(nxt).show();
+           } else {
+             $('#idx').val(1)
+           }
+           console.log('onetone button - 2');
+          });
+          $('#aslist').on('click',function() {
+            console.log('aslist button - 1');
+            $('#onetoone').show();
+            $('#aslist').hide();
+            $('.onetoone').hide();
+            $('.Row').show();
+            console.log('aslist button - 2');
+          });
+          $('#less').on('click',function(){
+            console.log('less button - 1');
+            var i = $('.Row').length;
+            var nxt = parseInt($('#idx').val(),10) - 1;
+            if (nxt < i & nxt >0) {
+              $('#idx').val(nxt)
+              $('.Row').hide();
+              $('.Row').eq(0).show();
+              $('.Row').eq(nxt).show();
+            } else {
+              $('#idx').val(1)
+            }
+            console.log('less button - 2');
+          });
+          $('#more').on('click',function(){
+            console.log('more button - 1');
+            var i = $('.Row').length;
+            var nxt = parseInt($('#idx').val(),10) + 1;
+            if (nxt < i & nxt >0) {
+              $('#idx').val(nxt)
+              $('.Row').hide();
+              $('.Row').eq(0).show();
+              $('.Row').eq(nxt).show();
+            } else {
+              $('#idx').val(i)
+            }
+            console.log('more button - 2');
+          });
+          $('#idx').on('change', function(){
+            console.log('idx changed - 1');
+            var i = $('.Row').length;
+            var nxt = $('#idx').val();
+            if (nxt < i & nxt >0) {
+              $('#idx').val(nxt)
+              $('.Row').hide();
+              $('.Row').eq(0).show();
+              $('.Row').eq(nxt).show();
+            } else {
+              $('#idx').val(i)
+            }
+            console.log('idx changed - 2');
+          });
+        });
+        </script>
+        <style type='text/css'>
+        .Table
+        {
+           display: table;
+        }
+        .Title
+        {
+          display: table-caption;
+          text-align: center;
+          font-weight: bold;
+          font-size: larger;
+        }
+        .Row
+        {
+          display: table-row;
+        }
+        .Cell
+        {
+          display: table-cell;
+          border: solid;
+          border-width: thin;
+          padding-left: 5px;
+          padding-right: 5px;
+          vertical-align: top;
+        }
+        img {
+          width: 200px;
+          height:120px;
+        }
+        </style>
+        </head>
+        <body>
+        <div id='pageone' data-role='main' class='ui-content'>
+            <p><p><h1> Data Visualization & Exploration </h1>
+            <form>
+                <input type='button' id='onetoone' value='Show as Cards'>
+                <input type='button' id='aslist' class='onetoone' value='Show as List'>
+            </form>
+            <p>
+        <p><p>
+            <div class='Table'>
+            <div class='Row'>
+            <div class='Cell Title'> Variable </div>
+            <div class='Cell Title'> Distribution </div>
+            <div class='Cell Title'> Descriptive <br> Statistics</div>
+            <div class='Cell Title'> Outliers </div>
+            
+            </div>
+        <div class='Row'><div class='Cell Title'><b> Product </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 6,765,345,910,415.20 	 <u>StdDev</u>: 1,854,435,507,066.80 <br><u>Median</u>: 7,290,003,029,181.00 	
+                    <u>IQR</u>: 7,290,000,057,477.00-7,290,004,554,781.00<br><u>Min</u>: 17 	 <u>Max</u>: 7290107932080 </div>
+                    <div class='Cell'><img src="Product_1.png"></img></div>
+                    <div class='Cell'><img src="Product_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Year </b></div><div class='Cell'> <u>Data type</u>: Category <p> <u>Data length</u>: 2291/2291 <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Categories</u>: ['2,291.00 (  100.00%)'] <br>  </div>
+                    <div class='Cell'><img src="Year_1.png"></img></div>
+                    <div class='Cell'><img src="Year_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Month </b></div><div class='Cell'> <u>Data type</u>: Category <p> <u>Data length</u>: 2291/2291 <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Categories</u>: ['  372.00 (   16.20%)', '  375.00 (   16.40%)', '  375.00 (   16.40%)', '  372.00 (   16.20%)', '  375.00 (   16.40%)', '  375.00 (   16.40%)'] <br>  </div>
+                    <div class='Cell'><img src="Month_1.png"></img></div>
+                    <div class='Cell'><img src="Month_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Week </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:    22.50 	 <u>StdDev</u>:     7.80 <br><u>Median</u>:    22.00 	
+                    <u>IQR</u>:    16.00-   30.00<br><u>Min</u>: 9 	 <u>Max</u>: 36 </div>
+                    <div class='Cell'><img src="Week_1.png"></img></div>
+                    <div class='Cell'><img src="Week_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Quantity </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 2,369.10 	 <u>StdDev</u>: 5,098.50 <br><u>Median</u>: 1,300.00 	
+                    <u>IQR</u>:   720.00-2,479.50<br><u>Min</u>: 0 	 <u>Max</u>: 161224 </div>
+                    <div class='Cell'><img src="Quantity_1.png"></img></div>
+                    <div class='Cell'><img src="Quantity_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Avg_cost </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     5.80 	 <u>StdDev</u>:     6.90 <br><u>Median</u>:     4.00 	
+                    <u>IQR</u>:     2.40-    7.00<br><u>Min</u>: 0.0 	 <u>Max</u>: 168.05 </div>
+                    <div class='Cell'><img src="Avg_cost_1.png"></img></div>
+                    <div class='Cell'><img src="Avg_cost_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Standart_price </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     5.80 	 <u>StdDev</u>:     5.50 <br><u>Median</u>:     4.10 	
+                    <u>IQR</u>:     2.40-    7.50<br><u>Min</u>: 0.76 	 <u>Max</u>: 30.88 </div>
+                    <div class='Cell'><img src="Standart_price_1.png"></img></div>
+                    <div class='Cell'><img src="Standart_price_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Category </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 100,742.70 	 <u>StdDev</u>: 1,063.10 <br><u>Median</u>: 100,329.00 	
+                    <u>IQR</u>: 100,211.00-100,411.00<br><u>Min</u>: 100188 	 <u>Max</u>: 103560 </div>
+                    <div class='Cell'><img src="Category_1.png"></img></div>
+                    <div class='Cell'><img src="Category_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Holiday </b></div><div class='Cell'> <u>Data type</u>: Category <p> <u>Data length</u>: 2291/2291 <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Categories</u>: ['1,469.00 (   64.10%)', '  822.00 (   35.90%)'] <br>  </div>
+                    <div class='Cell'><img src="Holiday_1.png"></img></div>
+                    <div class='Cell'><img src="Holiday_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Temp_Hi </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:    29.50 	 <u>StdDev</u>:     3.40 <br><u>Median</u>:    31.40 	
+                    <u>IQR</u>:    26.30-   32.00<br><u>Min</u>: 21.57 	 <u>Max</u>: 34.0 </div>
+                    <div class='Cell'><img src="Temp_Hi_1.png"></img></div>
+                    <div class='Cell'><img src="Temp_Hi_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Temp_Lo </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 2291/2291 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:    19.90 	 <u>StdDev</u>:     4.60 <br><u>Median</u>:    21.30 	
+                    <u>IQR</u>:    15.30-   24.10<br><u>Min</u>: 10.0 	 <u>Max</u>: 25.14 </div>
+                    <div class='Cell'><img src="Temp_Lo_1.png"></img></div>
+                    <div class='Cell'><img src="Temp_Lo_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> Temp_Rain </b></div><div class='Cell'> <u>Data type</u>: Category <p> <u>Data length</u>: 2291/2291 <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Categories</u>: ['2,141.00 (   93.50%)', '  150.00 (    6.50%)'] <br>  </div>
+                    <div class='Cell'><img src="Temp_Rain_1.png"></img></div>
+                    <div class='Cell'><img src="Temp_Rain_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> class </b></div><div class='Cell'> <u>Data type</u>: Category <p> <u>Data length</u>: 75/2291 <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Categories</u>: ['   32.00 (    1.40%)', '   32.00 (    1.40%)', '   32.00 (    1.40%)', '   32.00 (    1.40%)', '   32.00 (    1.40%)', '   32.00 (    1.40%)', '2,067.00 (   90.20%)'] <br>  </div>
+                    <div class='Cell'><img src="class_1.png"></img></div>
+                    <div class='Cell'><img src="class_2.png"></img></div>
+                    </div>
+                <div data-role='popup' id='myContainer' style='display: none;'>
+                <img id='popup_img' src='' />
+                </div>
+                </div>
+                </div>
+                </div>
+                <p>
+                <div class='onetoone'>
+                <form id='myform2'>
+                <span> <input type='button' id='less' value=' << '> </span>
+                <span> <input id='idx' name='idx' value='1'></input></span>
+                <span> <input type='button' id='more' value=' >> '> </span>
+                </form>
+                </div>
+                <p>
+                </body></html>
+        
