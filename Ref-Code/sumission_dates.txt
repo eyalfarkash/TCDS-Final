@@ -1,0 +1,27 @@
+Methodology
+
+Exploratory data analysis: 11-02-19
+
+Clear outcome variable definition: 11-02-19
+
+Variable engineering: 11-02-19
+
+Outliers determination and treatment: 11-02-19
+
+Missing values - determination of MCAR-MAR-MNAR, treatment: 11-02-19
+
+Data retrieval protocol: 11-02-19
+
+Models: 
+
+Variable selection: 18-02-19
+
+Data preparation - Train/Dev/Test: 18-02-19
+
+Model Selection: 25-02-19
+
+Model evaluation- Metrics selection: 04-03-19
+
+Model fine-tuning - hyperparameters: 04-03-19
+
+Conclusion: 04-03-19
